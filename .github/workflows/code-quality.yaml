@@ -1,0 +1,44 @@
+name: Code Quality Analyze
+
+on:
+  pull_request:
+    paths:
+      - '**.php'
+
+jobs:
+  php-insight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Prepare phpinsights
+        run: php7.4 -f /usr/bin/composer global require nunomaduro/phpinsights
+
+      - name: Install jq
+        run: |
+          sudo apt-get -y install jq
+
+      - name: Perform analyze
+        run: |
+            export PATH="$PATH:$HOME/.composer/vendor/bin"
+            phpinsights analyse --no-interaction --disable-security-check --format json src > tmp.js
+            echo "::set-output name=summary-code::$(jq '.summary.code' tmp.js)"
+            echo "::set-output name=summary-complexity::$(jq '.summary.complexity' tmp.js)"
+            echo "::set-output name=summary-architecture::$(jq '.summary.architecture' tmp.js)"
+            echo "::set-output name=summary-style::$(jq '.summary.style' tmp.js)"
+            echo "::set-output name=summary-security::$(jq '.summary."security issues"' tmp.js)"
+        id: analyze
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@1.0.1
+        with:
+            message: |
+                ### Code Review Analysis is ready
+                | Code | Complexity | Architecture | Style | Security Issues |
+                |------|------------|--------------|-------|-----------------|
+                | ${{ steps.analyze.outputs.summary-code }} | ${{ steps.analyze.outputs.summary-complexity }} | ${{ steps.analyze.outputs.summary-architecture }} | ${{ steps.analyze.outputs.summary-style }} | ${{ steps.analyze.outputs.summary-security }} |
+
+                For **Code**, **Complexity**, **Architecture**, **Style** 100 is the best value, 0 is the worst
+                **Security Issues** should be 0 if there are no issues
+                Use **nunomaduro/phpinsights** locally to find exact problems in a code
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
