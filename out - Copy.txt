@@ -1,0 +1,64 @@
+D:\worka\python>python main_task.py
+We own the following instances: ['i-06652bc4f04b59be5', 'i-0ce54e42ce0ed9071', 'i-0efc8484d5dc3fe55', 'i-089148adc2dff3feb', 'i-0ec19218860bfe1f6', 'i-086a55e7a01841786']
+With the following IPs: [None, None, None, '34.253.48.150', '34.245.38.182', '34.245.122.236']
+
+Checking ping for:  a.ridis.gq
+ping output for domain: a.ridis.gq
+Access denied. Option -c requires administrative privileges.
+
+Checking ping for:  b.ridis.gq
+ping output for domain: b.ridis.gq
+Access denied. Option -c requires administrative privileges.
+
+Checking ping for:  c.ridis.gq
+ping output for domain: c.ridis.gq
+Access denied. Option -c requires administrative privileges.
+
+Checking ping for:  34.253.48.150
+34.253.48.150 is down
+Checking ping for:  34.245.38.182
+34.245.38.182 is down
+Checking ping for:  34.245.122.236
+34.245.122.236 is down
+
+You have 3 instances running
+
+Stopping random instance
+
+it will  be  i-086a55e7a01841786
+
+instance is stopping
+
+Created backup of  ['i-086a55e7a01841786']
+ami-040158cf0662bed16 is fine
+ami-061116afeecab854d is fine
+ami-0a210180b514c0663 is fine
+ami-3216294b is folder than 7 days
+ami-7fdbdd06 is folder than 7 days
+ami-9af2f2e3 is folder than 7 days
+ami-c62429bf is folder than 7 days
+ami-d2c1feab is folder than 7 days
+terminating  ['i-086a55e7a01841786']
+[33mi-06652bc4f04b59be5[0m, instance is terminated
+
+[33mi-0ce54e42ce0ed9071[0m, instance is terminated
+
+[33mi-0efc8484d5dc3fe55[0m, instance is terminated
+
+[32mi-089148adc2dff3feb[0m instance is running
+Its IP is [37m34.253.48.150[0m
+
+[32mi-0ec19218860bfe1f6[0m instance is running
+Its IP is [37m34.245.38.182[0m
+
+trying domain  a.ridis.gq
+Oops. HTTP Error occured for  a.ridis.gq
+
+trying domain  b.ridis.gq
+Oops. HTTP Error occured for  b.ridis.gq
+
+trying domain  c.ridis.gq
+Oops. HTTP Error occured for  c.ridis.gq
+
+trying domain  google.com
+Status code:  200
