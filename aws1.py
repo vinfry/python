@@ -1,4 +1,5 @@
 import boto3
+print('all ok')
 
 ec2 = boto3.resource('ec2', region_name='eu-west-1')
 tags = [{'ResourceType': 'instance', 'Tags': [{'Key': 'Name', 'Value': 'test_evgeniy'}]}]
